@@ -1,0 +1,10 @@
+{
+  "name": "cli-monorepo",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "demo": "yarn workspace consumer-of-some-cli demo"
+  }
+}

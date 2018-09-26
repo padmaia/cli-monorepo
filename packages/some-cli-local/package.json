@@ -1,0 +1,13 @@
+{
+  "name": "some-cli-local",
+  "version": "1.0.0",
+  "bin": {
+    "some-cli": "bin.js"
+  },
+  "dependencies": {
+    "cross-spawn": "^6.0.5",
+    "esm": "^3.0.84",
+    "some-cli": "1.0.0",
+    "spawndamnit": "^2.0.0"
+  }
+}

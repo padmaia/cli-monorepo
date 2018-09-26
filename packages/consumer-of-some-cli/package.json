@@ -1,0 +1,11 @@
+{
+  "name": "consumer-of-some-cli",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "demo": "some-cli some-arg --some-flag"
+  },
+  "dependencies": {
+    "some-cli-local": "1.0.0"
+  }
+}
