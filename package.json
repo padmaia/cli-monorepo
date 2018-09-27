@@ -5,6 +5,19 @@
     "packages/*"
   ],
   "scripts": {
-    "demo": "yarn workspace consumer-of-some-cli demo"
+    "demo": "yarn workspace consumer-of-some-cli demo",
+    "test": "NODE_ENV=test ava"
+  },
+  "devDependencies": {
+    "ava": "^0.25.0",
+    "esm": "^3.0.84"
+  },
+  "ava": {
+    "require": [
+      "esm"
+    ]
+  },
+  "esm": {
+    "mainFields": ["module", "main"]
   }
 }
