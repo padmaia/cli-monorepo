@@ -7,7 +7,7 @@ const cliArgs = process.argv.slice(2);
 
 let env = {
   ...process.env,
-  ESM_OPTIONS: path.resolve(__dirname, '../../.esmrc.json') // "{\"mainFields\": [\"module\"]}"
+  ESM_OPTIONS: path.resolve(__dirname, '../../.esmrc.json')
 }
 
 let result = spawn.sync(
