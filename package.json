@@ -16,8 +16,5 @@
     "require": [
       "esm"
     ]
-  },
-  "esm": {
-    "mainFields": ["module", "main"]
   }
 }

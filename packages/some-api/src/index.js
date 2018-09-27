@@ -13,6 +13,7 @@ export default class SomeApi {
         forked.kill();
       });
     });
+    console.log(chalk.green('All done'));
 
     return result;
   }
