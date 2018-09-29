@@ -1,4 +1,8 @@
 import runSomeLongTask from 'some-plugin';
 
-runSomeLongTask(1000);
-process.send(42);
+async function run() {
+  await runSomeLongTask(1000);
+  process.send(42);
+}
+
+run();

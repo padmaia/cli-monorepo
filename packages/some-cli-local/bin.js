@@ -5,10 +5,11 @@ const path = require('path');
 const nodeArgs = ['-r', 'esm', path.resolve(__dirname, './cli.js')];
 const cliArgs = process.argv.slice(2);
 
-let env = {
-  ...process.env,
-  ESM_OPTIONS: path.resolve(__dirname, '../../.esmrc.json')
-}
+let env = Object.assign(
+  {},
+  process.env,
+  { ESM_OPTIONS: path.resolve(__dirname, '../../.esmrc.json') }
+);
 
 let result = spawn.sync(
   'node',
