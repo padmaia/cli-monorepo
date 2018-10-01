@@ -5,12 +5,8 @@
     "some-cli": "bin.js"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.0",
-    "@babel/preset-env": "^7.1.0",
-    "@babel/register": "^7.0.0",
     "cross-spawn": "^6.0.5",
     "esm": "^3.0.84",
-    "some-cli": "1.0.0",
-    "spawndamnit": "^2.0.0"
+    "some-cli": "1.0.0"
   }
 }

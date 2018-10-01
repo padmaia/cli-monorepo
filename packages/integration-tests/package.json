@@ -1,0 +1,7 @@
+{
+  "name": "integration-tests",
+  "version": "1.0.0",
+  "devDependencies": {
+    "some-api": "1.0.0"
+  }
+}

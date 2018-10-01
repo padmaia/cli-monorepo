@@ -1,5 +1,5 @@
 {
-  "name": "consumer-of-some-cli",
+  "name": "local-dev",
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {

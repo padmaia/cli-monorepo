@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import SomeApi from '..';
+import SomeApi from 'some-api';
 
 test('api.run() should return the meaning of life', async t => {
   let api = new SomeApi();
