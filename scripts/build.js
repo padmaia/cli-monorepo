@@ -54,9 +54,10 @@ function getPackageName(file) {
 }
 
 function getBuildPath(file, buildFolder) {
+  let envBuildFolder = buildFolder + '/' + process.env.BABEL_ENV;
   const pkgName = getPackageName(file);
   const pkgSrcPath = path.resolve(PACKAGES_DIR, pkgName, SRC_DIR);
-  const pkgBuildPath = path.resolve(PACKAGES_DIR, pkgName, buildFolder);
+  const pkgBuildPath = path.resolve(PACKAGES_DIR, pkgName, envBuildFolder);
   const relativeToSrcPath = path.relative(pkgSrcPath, file);
   return path.resolve(pkgBuildPath, relativeToSrcPath);
 }
@@ -119,7 +120,11 @@ if (files.length) {
   files.forEach(buildFile);
 } else {
   // $FlowFixMe TODO t25179342 Add version to the flow types for this module
-  process.stdout.write(chalk.bold.inverse('Building packages') + ' (using Babel v' + babel.version + ')\n');
+  process.env.BABEL_ENV = 'legacy';
+  process.stdout.write(chalk.bold.inverse('Building legacy build') + ' (using Babel v' + babel.version + ')\n');
+  getPackages().forEach(buildPackage);
+  process.env.BABEL_ENV = 'modern';
+  process.stdout.write(chalk.bold.inverse('Building modern build') + ' (using Babel v' + babel.version + ')\n');
   getPackages().forEach(buildPackage);
   process.stdout.write('\n');
 }

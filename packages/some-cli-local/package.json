@@ -6,7 +6,7 @@
   },
   "devDependencies": {
     "cross-spawn": "^6.0.5",
-    "esm": "^3.0.84",
-    "some-cli": "1.0.0"
+    "some-cli": "1.0.0",
+    "some-cli-babel-register": "1.0.0"
   }
 }

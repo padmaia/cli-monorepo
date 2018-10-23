@@ -10,10 +10,10 @@ Description: Uses yarn workspaces to install and hoist external dependencies and
 
 `yarn test`
 
-Description: Integration tests run after a build. Unit tests would probably use `@babel/register`
+Tests fail because `babel-register-some-cli` required through ava does not apply to files in forked process
 
 ## Demo
 
 `yarn demo`
 
-Description: Runs the cli and compiles using esm on the fly so you don't need to worry about building first
+Demo does work because we are spawning with `node -r babel-register-some-cli` which does apply to files in forked process

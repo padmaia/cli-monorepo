@@ -2,19 +2,14 @@
 const spawn = require('cross-spawn');
 const path = require('path');
 
-const nodeArgs = ['-r', 'esm', path.resolve(__dirname, './cli.js')];
+// Using `node -r babel-register` works inside of workers too
+const nodeArgs = ['-r', 'some-cli-babel-register', path.resolve(__dirname, './node_modules/.bin/some-cli')];
 const cliArgs = process.argv.slice(2);
-
-let env = Object.assign(
-  {},
-  process.env,
-  { ESM_OPTIONS: path.resolve(__dirname, '../../.esmrc.json') }
-);
 
 let result = spawn.sync(
   'node',
   nodeArgs.concat(cliArgs),
-  { env, stdio: 'inherit' }
+  { stdio: 'inherit' }
 );
 
 process.exit(result.status);
