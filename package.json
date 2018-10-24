@@ -7,16 +7,20 @@
   "scripts": {
     "clean:build": "rm -rf packages/*/lib",
     "clean:node_modules": "rm -rf node_modules && rm -rf packages/*/node_modules",
-    "clean": "yarn clean:node_modules && yarn clean:build",
-    "build": "node ./scripts/build.js",
+    "clean": "yarn clean:node_modules && yarn clean:build && yarn",
+    "build": "yarn workspace some-cli-scripts build",
     "demo": "yarn workspace local-dev demo",
-    "test": "yarn build && ava",
-    "watch": "yarn run build && node ./scripts/watch.js"
+    "test": "NODE_ENV=test ava"
+  },
+  "ava": {
+    "require": [
+      "some-cli-babel-register"
+    ]
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/preset-env": "^7.1.0",
-    "ava": "^1.0.0-beta.8",
+    "ava": "^1.0.0-rc.1",
     "chalk": "^2.4.1",
     "glob": "^7.1.3",
     "micromatch": "^3.1.10",

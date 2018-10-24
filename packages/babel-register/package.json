@@ -1,0 +1,10 @@
+{
+  "name": "some-cli-babel-register",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/register": "^7.0.0",
+    "some-cli-babel-preset": "1.0.0"
+  }
+}

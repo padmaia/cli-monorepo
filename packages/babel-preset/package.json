@@ -1,0 +1,9 @@
+{
+  "name": "some-cli-babel-preset",
+  "version": "1.0.0",
+  "license": "MIT",
+  "dependencies": {
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0"
+  }
+}

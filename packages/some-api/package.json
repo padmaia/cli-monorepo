@@ -2,6 +2,7 @@
   "name": "some-api",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "lib/index.js",
-  "module": "src/index.js"
+  "devDependencies": {
+    "some-cli-babel-register": "1.0.0"
+  }
 }

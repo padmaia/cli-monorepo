@@ -1,0 +1,11 @@
+{
+  "name": "some-cli-scripts",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "build": "node ./scripts/build.js"
+  },
+  "dependencies": {
+    "some-cli-babel-preset": "1.0.0"
+  }
+}
