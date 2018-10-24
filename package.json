@@ -7,10 +7,10 @@
   "scripts": {
     "clean:build": "rm -rf packages/*/lib",
     "clean:node_modules": "rm -rf node_modules && rm -rf packages/*/node_modules",
-    "clean": "yarn clean:node_modules && yarn clean:build",
+    "clean": "yarn clean:node_modules && yarn clean:build && yarn",
     "build": "node ./scripts/build.js",
     "demo": "yarn workspace local-dev demo",
-    "test": "ava",
+    "test": "NODE_ENV=test ava",
     "watch": "yarn run build && node ./scripts/watch.js"
   },
   "ava": {

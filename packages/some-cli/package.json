@@ -7,9 +7,5 @@
     "chalk": "^2.4.1",
     "meow": "^5.0.0",
     "some-api": "1.0.0"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.1.2",
-    "@babel/register": "^7.0.0"
   }
 }

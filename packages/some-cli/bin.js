@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-
 function runCli() {
   try {
     if (parseInt(process.versions.node, 10) < 8) {

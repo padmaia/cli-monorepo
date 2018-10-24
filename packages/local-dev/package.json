@@ -3,9 +3,10 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "demo": "some-cli some-arg --some-flag"
+    "demo": "node -r some-cli-babel-register ./node_modules/.bin/some-cli some-arg --some-flag"
   },
   "dependencies": {
-    "some-cli-local": "1.0.0"
+    "some-cli": "1.0.0",
+    "some-cli-babel-register": "1.0.0"
   }
 }
