@@ -1,14 +1,8 @@
-if (!process.env.BABEL_ENV) process.env.BABEL_ENV = 'modern';
+const someCliBabelPreset = require('some-cli-babel-preset');
 
 require('@babel/register')({
   ignore: [
     filepath => filepath.includes('/node_modules/')
   ],
-  presets: [
-    ['@babel/env', {
-      targets: {
-        node: 'current'
-      }
-    }]
-  ]
+  presets: [someCliBabelPreset]
 });

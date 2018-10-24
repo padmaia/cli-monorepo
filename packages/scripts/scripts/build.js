@@ -30,11 +30,16 @@ const micromatch = require('micromatch');
 const mkdirp = require('mkdirp');
 const path = require('path');
 
+const envPresets = {
+  legacy: require('some-cli-babel-preset/legacy'),
+  modern: require('some-cli-babel-preset/modern'),
+}
+
 const SRC_DIR = 'src';
 const BUILD_DIR = 'lib';
 const JS_FILES_PATTERN = '**/*.js';
 const IGNORE_PATTERN = '**/__tests__/**';
-const PACKAGES_DIR = path.resolve(__dirname, '../packages');
+const PACKAGES_DIR = path.resolve(__dirname, '../..');
 
 const fixedWidth = function(str/*: string*/) {
   const WIDTH = 80;
@@ -53,28 +58,27 @@ function getPackageName(file) {
   return path.relative(PACKAGES_DIR, file).split(path.sep)[0];
 }
 
-function getBuildPath(file, buildFolder) {
-  let envBuildFolder = buildFolder + '/' + process.env.BABEL_ENV;
+function getBuildPath(file, buildFolder, env) {
   const pkgName = getPackageName(file);
   const pkgSrcPath = path.resolve(PACKAGES_DIR, pkgName, SRC_DIR);
-  const pkgBuildPath = path.resolve(PACKAGES_DIR, pkgName, envBuildFolder);
+  const pkgBuildPath = path.resolve(PACKAGES_DIR, pkgName, buildFolder) + '/' + env;
   const relativeToSrcPath = path.relative(pkgSrcPath, file);
   return path.resolve(pkgBuildPath, relativeToSrcPath);
 }
 
-function buildPackage(p) {
+function buildPackage(p, {env}) {
   const srcDir = path.resolve(p, SRC_DIR);
   const pattern = path.resolve(srcDir, '**/*');
   const files = glob.sync(pattern, {nodir: true});
 
   process.stdout.write(fixedWidth(`${path.basename(p)}\n`));
 
-  files.forEach(file => buildFile(file, true));
+  files.forEach(file => buildFile(file, {env, silent: true}));
   process.stdout.write(`[  ${chalk.green('OK')}  ]\n`);
 }
 
-function buildFile(file, silent) {
-  const destPath = getBuildPath(file, BUILD_DIR);
+function buildFile(file, {env, silent}) {
+  const destPath = getBuildPath(file, BUILD_DIR, env);
 
   mkdirp.sync(path.dirname(destPath));
   if (micromatch.isMatch(file, IGNORE_PATTERN)) {
@@ -97,7 +101,7 @@ function buildFile(file, silent) {
       );
   } else {
     // $FlowFixMe TODO t25179342 need to update flow-types for babel-core
-    const transformed = babel.transformFileSync(file, {}).code;
+    const transformed = babel.transformFileSync(file, {presets: [envPresets[env]]}).code;
     fs.writeFileSync(destPath, transformed);
     const source = fs.readFileSync(file).toString('utf-8');
     if (/\@flow/.test(source)) {
@@ -120,11 +124,9 @@ if (files.length) {
   files.forEach(buildFile);
 } else {
   // $FlowFixMe TODO t25179342 Add version to the flow types for this module
-  process.env.BABEL_ENV = 'legacy';
   process.stdout.write(chalk.bold.inverse('Building legacy build') + ' (using Babel v' + babel.version + ')\n');
-  getPackages().forEach(buildPackage);
-  process.env.BABEL_ENV = 'modern';
+  getPackages().forEach((p) => buildPackage(p, {env: 'legacy'}));
   process.stdout.write(chalk.bold.inverse('Building modern build') + ' (using Babel v' + babel.version + ')\n');
-  getPackages().forEach(buildPackage);
+  getPackages().forEach((p) => buildPackage(p, {env: 'modern'}));
   process.stdout.write('\n');
 }

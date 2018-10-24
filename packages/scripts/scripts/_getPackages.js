@@ -10,7 +10,7 @@
 const fs = require('fs');
 const path = require('path');
 
-const PACKAGES_DIR = path.resolve(__dirname, '../packages');
+const PACKAGES_DIR = path.resolve(__dirname, '../..');
 
 // Get absolute paths of all directories under packages/*
 module.exports = function getPackages() {
