@@ -10,19 +10,16 @@
     "clean": "yarn clean:node_modules && yarn clean:build && yarn",
     "build": "yarn workspace some-cli-scripts build",
     "demo": "yarn workspace local-dev demo",
-    "test": "NODE_ENV=test ava"
-  },
-  "ava": {
-    "require": [
-      "some-cli-babel-register"
-    ]
+    "test": "NODE_ENV=test jest"
   },
   "devDependencies": {
-    "@babel/core": "^7.1.0",
+    "@babel/core": "^7.1.2",
     "@babel/preset-env": "^7.1.0",
-    "ava": "^1.0.0-rc.1",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
     "chalk": "^2.4.1",
     "glob": "^7.1.3",
+    "jest": "^23.6.0",
     "micromatch": "^3.1.10",
     "mkdirp": "^0.5.1"
   }
